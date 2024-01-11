@@ -1,0 +1,26 @@
+{
+  "name": "csc307-app",
+  "version": "1.0.0",
+  "description": "App for CSC 307",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nathanip101/csc307-app.git"
+  },
+  "author": "Nathan Ip",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nathanip101/csc307-app/issues"
+  },
+  "homepage": "https://github.com/nathanip101/csc307-app#readme",
+  "workspaces": [
+    "packages/*"
+  ],
+  "dependencies": {
+    "create-react-app": "^5.0.1"
+  },
+  "devDependencies": {}
+}
