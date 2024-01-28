@@ -118,7 +118,3 @@ app.delete("/users", (req, res) => {
         res.send();
     }
 });
-
-app.get("/users", (req, res) => {
-    res.send(users);
-});
