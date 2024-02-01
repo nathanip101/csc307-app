@@ -1,6 +1,7 @@
 // backend.js
 
 import express from "express";
+import cors from "cors";
 
 const app = express();
 const port = 8000;
@@ -34,7 +35,7 @@ const users = {
     ]
 };
 
-
+app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -89,15 +90,26 @@ app.get("/users/:id", (req, res) => {
   }
 });
 
+const generateId = () => {
+    const idLength = 6; // Length of the generated ID
+    const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let id = '';
+    for (let i = 0; i < idLength; i++) {
+        id += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return id;
+};
+
 const addUser = (user) => {
-    users["users_list"].push(user);
-    return user;
+    const newUser = { ...user, id: generateId() };
+    users["users_list"].push(newUser);
+    return newUser;
 };
 
 app.post("/users", (req, res) => {
     const userToAdd = req.body;
-    addUser(userToAdd);
-    res.send();
+    const newUser = addUser(userToAdd);
+    res.status(201).send(newUser);
 });
 
 const deleteUser = (user) => {
@@ -115,6 +127,6 @@ app.delete("/users", (req, res) => {
         res.status(404).send("Resource not found.");
     } else {
         deleteUser(user);
-        res.send();
+        res.status(204).send();
     }
 });
