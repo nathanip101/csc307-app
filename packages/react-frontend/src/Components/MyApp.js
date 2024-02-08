@@ -11,7 +11,7 @@ function MyApp() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ id: characters[index].id }),
+      body: JSON.stringify({ _id: characters[index]._id }),
     })
       .then(response => {
         if (response.status === 204) {
