@@ -102,13 +102,12 @@ app.post("/users", (req, res) => {
 
 app.delete("/users", (req, res) => {
     const id = req.body._id;
-    console.log(req.body);
     let response = services.deleteUser(id);
     response.then((result) => {
-        if (result === null) {
-            res.status(404).send("Resource not found.");
-        } else {
+        if (result) {
             res.status(204).send("User deleted.");
+        } else {
+            res.status(404).send("Resource not found.");
         }
     }).catch((error) => {
         res.status(404).send("Resource not found.");
